@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<body>
+<style type="text/css">
+	#fps {
+        position: absolute;
+        top:25px;
+       	right:25px;
+        background-color:#ccc;
+        box-shadow: 1px 1px 1px #333;
+        width:80px;
+        padding:5px;
+    }
+	#conteneur {
+   		width: 100%;
+        height: 300px;
+   		border: 1px solid;
+        box-shadow: 1px 1px 1px #333;
+        padding:0px;
+        margin:0px;
+	}
+    #ballon {
+    	width:100px;
+        height:100px;
+        background: #a00;
+        border-radius:50%;
+        position: relative;
+        left:0;
+        top:0;
+    }
+    #coords {
+    	position: absolute;
+        top:25px;
+        left:25px;
+        width:80px;
+        padding:5px;
+        font-size: 12px;
+    }
+</style>
+
+<div id="conteneur">
+	<div id="ballon"></div>
+</div>
+<div id="coords">(0,0)</div>
+<div id="fps">FPS</div>
+
+<input type="button" class="center" onclick="toggleAnimation()" id="toggle" value="Arrêter l'animation"/>
+
+<script type="text/javascript">
+	/* Variables globales de traitement */
+    var IDanimation, NBanimation = 0, nbFPS = 10;
+    var x = 0, y = 0;
+    var deltaX = 2, deltaY = 5, diametre = 100, bordure = 1;
+    var conteneur = document.getElementById("conteneur").getBoundingClientRect();
+    
+    var largeur = conteneur.width - 2*bordure , hauteur = conteneur.height - 2*bordure;
+    
+    
+     function animer() {
+       NBanimation++;        
+       /* déplacement des coordonnées du ballon */
+       x+=deltaX;
+       y+=deltaY;
+
+       document.getElementById("coords").innerHTML="("+x+", "+y+")";
+       document.getElementById("ballon").style.left = x+"px";
+       document.getElementById("ballon").style.top  = y+"px";
+
+ 
+
+
+       /* Si le ballon dépasse le conteneur, on inverse le sens pour générer le rebond */
+       if ((x+diametre>largeur) || (x<0)) {
+           deltaX=-1*deltaX;
+       }
+       if ((y+diametre>hauteur) || (y<0)) {
+           deltaY=-1*deltaY;
+       }                
+
+       // Toutes les nbFPS animations, maj du contenu div#fps
+       if (NBanimation % nbFPS == 0) {
+           var microtime2=window.performance.now();
+           // Temps écoulé depuis le dernier appel
+           var delai=microtime2-microtime1;
+           // Conversion en FPS (frame par seconde)
+           var fps = Math.round(1/delai*1000*nbFPS);
+           document.getElementById("fps").innerHTML=fps + " FPS";
+           microtime1=microtime2;
+       }        
+       IDanimation = requestAnimationFrame(animer);
+   }
+
+   function toggleAnimation() {
+       console.log(IDanimation)
+       if (IDanimation==0) { // Animation stoppée : on la relance
+           animer();
+           document.getElementById("toggle").innerHTML="Arrêter l'animation";
+       } else {  // Arrêt de l'animation
+           cancelAnimationFrame(IDanimation);
+           IDanimation=0;
+           document.getElementById("toggle").innerHTML="Relancer l'animation";
+       }
+   }
+
+   var microtime1=window.performance.now();
+   animer();
+    
+</script>
+
+</body>
+</html>

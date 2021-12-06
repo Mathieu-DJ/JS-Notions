@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Ouvrir la console</p>
+
+<script type="text/javascript">
+	function Fleur() {
+	  this.nbPetales = 10;
+	}
+
+	window.nbPetales = 20;
+
+	// On déclare floraison après un délai d'une seconde
+	Fleur.prototype.floraison = function() {
+	  window.setTimeout( this.declare.bind( this ), 1000 );
+	  window.setTimeout( this.declare, 1000 );
+	};
+
+	Fleur.prototype.declare = function() {
+		console.log('Je suis une fleur avec ' +
+		this.nbPetales + ' pétales !');
+	};
+
+	var fleur = new Fleur();
+	fleur.floraison();
+	// Après environ 1 seconde, on déclenche la méthode declare
+</script>
+
+</body>
+</html>
