@@ -13,8 +13,8 @@
 
 	// On déclare floraison après un délai d'une seconde
 	Fleur.prototype.floraison = function() {
-	  window.setTimeout( this.declare.bind( this ), 1000 );
-	  window.setTimeout( this.declare, 1000 );
+	  window.setTimeout( this.declare.bind( this ), 1000 ); //10
+	  window.setTimeout( this.declare, 1000 ); //20
 	};
 
 	Fleur.prototype.declare = function() {

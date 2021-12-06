@@ -14,6 +14,8 @@ console.log(g1.next().value); //8
 console.log(g1.next().value); //16
 console.log(g1.next().value); //32
 
+console.log("--123--");
+
 function* gen123() {
   yield 1;
   yield 2;
@@ -25,6 +27,7 @@ console.log(g2.next().value); //1
 console.log(g2.next().value); //2
 console.log(g2.return().value); //undefined
 
+console.log("--factorielle--");
 function* factorielle() {
 	
 	var index = 1;
@@ -36,7 +39,6 @@ function* factorielle() {
 	}
 }
 
-console.log("factorielle");
 
 var g3 = factorielle();
 g3.next() //1
