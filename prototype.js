@@ -38,3 +38,13 @@ rect.déplacer(1, 1);
 // Affiche 'Forme déplacée.'
 
 console.log(rect);
+
+//autre manière d'utiliser object.create()
+var proto = {
+	a : 1,
+	b : 2
+}
+
+var proto2 = Object.create(proto);
+console.log(proto);
+console.log(proto2);

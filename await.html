@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script type="text/javascript">
+	var urlImage = "data:image/png;base64,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"
+	
+	//sans async et await
+	
+	fetch(urlImage)
+	.then(response => {
+	  if (!response.ok) {
+		throw new Error(`Erreur HTTP ! statut : ${response.status}`);
+	  }
+	  return response.blob();
+	})
+	.then(myBlob => {
+	  let objectURL = URL.createObjectURL(myBlob);
+	  let image = document.createElement('img');
+	  image.src = objectURL;
+	  document.body.appendChild(image);
+	})
+	.catch(e => {
+	  console.log('Il y a eu un problème avec votre opération de récupération : ' + e.message);
+	});
+	
+	//avec async et await 
+	
+	async function myFetch() {
+		let response = await fetch(urlImage);
+
+		if (!response.ok) {
+		throw new Error(`Erreur HTTP ! statut : ${response.status}`);
+		}
+
+		let myBlob = await response.blob();
+
+		let objectURL = URL.createObjectURL(myBlob);
+		let image = document.createElement('img');
+		image.src = objectURL;
+		document.body.appendChild(image);
+	}
+	
+	myFetch().catch(e => {
+	  console.log('Il y a eu un problème avec votre opération de récupération : ' + e.message);
+	});
+</script>
+
+</body>
+</html>

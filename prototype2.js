@@ -1,16 +1,15 @@
-// Let's create an object o from function F with its own properties a and b:
-function F() {
+
+var F = function() {
    this.a = 1;
    this.b = 2;
 }
 
 F.prototype.c = "bar";
-
 var o = new F();
-
-console.log(o.c);
-
-console.log(F.c);
+console.log("o.b           " + o.b);
+console.log("o.c           " + o.c);
+console.log("F.prototype.b " + F.prototype.b);
+console.log("F.prototype.c " + F.prototype.c);
 
 function doSomething(){}
 doSomething.prototype.foo = "bar";
