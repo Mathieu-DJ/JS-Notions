@@ -49,5 +49,40 @@ g3.next() //24
 g3.next() //120
 g3.next() //720
 
+//en utilisant le parametre de next()
 
+function* logGenerator() {
+  console.log(yield);
+  console.log(yield);
+  console.log(yield);
+}
 
+var gen5 = logGenerator();
+
+// le premier appel à next exécute la fonction depuis son
+// début jusqu'au premier yield rencontré
+gen.next();
+gen.next('bretzel');    // bretzel
+gen.next('california'); // california
+gen.next('mayonnaise'); // mayonnaise
+
+//utilisation de yield*
+
+function* autreGenerateur(i) {
+  yield i + 1;
+  yield i + 2;
+  yield i + 3;
+}
+function* generateur(i){
+  yield i;
+  yield* autreGenerateur(i);
+  yield i + 10;
+}
+
+var gen6 = generateur(10);
+
+console.log(gen.next().value); // 10
+console.log(gen.next().value); // 11
+console.log(gen.next().value); // 12
+console.log(gen.next().value); // 13
+console.log(gen.next().value); // 20
